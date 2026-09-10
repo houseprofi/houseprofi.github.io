@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tsf下载-桌面启动器资源获取与使用指南</title>
+<meta name="description" content="tsf下载页面，介绍 TSF 桌面启动器（TSF Launcher）的下载获取途径、版本差异、安装步骤、功能特点与常见问题，帮助安卓用户判断是否适合使用这款桌面美化工具。">
+<meta name="keywords" content="tsf下载,TSF Launcher,桌面启动器,安卓桌面,桌面美化">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+  :root{
+    --bg:#0e1220;
+    --bg-soft:#151b2e;
+    --panel:#1b2238;
+    --line:rgba(120,150,220,.18);
+    --txt:#e8ecf7;
+    --txt-dim:#9aa6c4;
+    --accent:#4d8dff;
+    --accent-2:#7a5cff;
+    --cyan:#37d6d0;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(14,18,32,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .head-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    height:66px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:.5px;
+  }
+  .logo-mark{
+    width:32px;height:32px;
+    border-radius:9px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;color:#fff;
+    box-shadow:0 4px 14px rgba(77,141,255,.4);
+  }
+  .logo small{
+    display:block;
+    font-size:11px;
+    font-weight:400;
+    color:var(--txt-dim);
+    letter-spacing:1px;
+  }
+  nav.main-nav ul{
+    display:flex;
+    list-style:none;
+    gap:6px;
+  }
+  nav.main-nav a{
+    display:block;
+    padding:8px 14px;
+    font-size:14.5px;
+    color:var(--txt-dim);
+    border-radius:8px;
+    transition:.2s;
+  }
+  nav.main-nav a:hover{color:#fff;background:rgba(77,141,255,.14);}
+  .head-cta{
+    padding:9px 20px;
+    font-size:14px;
+    font-weight:600;
+    border-radius:9px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#fff;
+    white-space:nowrap;
+    box-shadow:0 4px 16px rgba(77,141,255,.32);
+  }
+  .nav-toggle{
+    display:none;
+    background:none;border:1px solid var(--line);
+    color:var(--txt);font-size:18px;
+    width:40px;height:38px;border-radius:9px;cursor:pointer;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:70px 0 60px;
+    background:
+      radial-gradient(circle at 12% 18%,rgba(77,141,255,.22),transparent 46%),
+      radial-gradient(circle at 88% 8%,rgba(122,92,255,.20),transparent 44%),
+      linear-gradient(180deg,#10162a,#0e1220);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(120,150,220,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(120,150,220,.05) 1px,transparent 1px);
+    background-size:46px 46px;
+    mask-image:radial-gradient(circle at 50% 30%,#000,transparent 78%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:46px;
+    align-items:center;
+  }
+  .tagline{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--cyan);
+    border:1px solid rgba(55,214,208,.35);
+    background:rgba(55,214,208,.08);
+    padding:5px 13px;
+    border-radius:999px;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:40px;
+    line-height:1.28;
+    font-weight:800;
+    letter-spacing:.5px;
+    margin-bottom:18px;
+  }
+  .hero h1 span{
+    background:linear-gradient(100deg,var(--accent),var(--cyan));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    color:var(--txt-dim);
+    font-size:16px;
+    max-width:560px;
+    margin-bottom:28px;
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 26px;
+    border-radius:11px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:.22s;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#fff;
+    box-shadow:0 8px 22px rgba(77,141,255,.32);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(77,141,255,.42);}
+  .btn-ghost{
+    border-color:var(--line);
+    color:var(--txt);
+    background:rgba(255,255,255,.03);
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:#fff;background:rgba(77,141,255,.1);}
+
+  .hero-panel{
+    background:linear-gradient(160deg,rgba(27,34,56,.95),rgba(21,27,46,.95));
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:26px;
+    box-shadow:0 24px 60px rgba(0,0,0,.45);
+  }
+  .hero-panel h3{
+    font-size:15px;
+    color:var(--txt-dim);
+    font-weight:600;
+    margin-bottom:18px;
+    letter-spacing:.5px;
+  }
+  .spec-list{list-style:none;display:grid;gap:14px;}
+  .spec-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14.5px;
+    padding-bottom:13px;
+    border-bottom:1px dashed var(--line);
+  }
+  .spec-list li:last-child{border-bottom:none;padding-bottom:0;}
+  .spec-list .k{color:var(--txt-dim);}
+  .spec-list .v{font-weight:600;color:#fff;}
+
+  /* ---------- section base ---------- */
+  section.block{padding:64px 0;}
+  .sec-head{margin-bottom:34px;}
+  .sec-head .eyebrow{
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--accent);
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .sec-head h2{
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:.4px;
+    margin-bottom:12px;
+  }
+  .sec-head p{
+    color:var(--txt-dim);
+    font-size:15.5px;
+    max-width:760px;
+  }
+
+  /* ---------- intro strip ---------- */
+  .intro-strip{
+    background:var(--bg-soft);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .intro-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .intro-card{
+    background:rgba(255,255,255,.025);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+  }
+  .intro-card h3{
+    font-size:17px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--cyan);flex:none;
+    box-shadow:0 0 10px var(--cyan);
+  }
+  .intro-card p{font-size:14.5px;color:var(--txt-dim);}
+
+  /* ---------- version cards ---------- */
+  .version-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+  }
+  .version-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    transition:.25s;
+  }
+  .version-card:hover{
+    border-color:rgba(77,141,255,.5);
+    transform:translateY(-4px);
+    box-shadow:0 16px 36px rgba(0,0,0,.4);
+  }
+  .version-card .vtag{
+    align-self:flex-start;
+    font-size:12px;
+    padding:3px 11px;
+    border-radius:999px;
+    background:rgba(77,141,255,.14);
+    color:#9dc0ff;
+    border:1px solid rgba(77,141,255,.3);
+    margin-bottom:14px;
+  }
+  .version-card h3{font-size:19px;margin-bottom:10px;}
+  .version-card p{font-size:14.5px;color:var(--txt-dim);margin-bottom:16px;flex:1;}
+  .version-card ul{
+    list-style:none;
+    font-size:14px;
+    color:var(--txt-dim);
+    display:grid;
+    gap:8px;
+    margin-bottom:20px;
+  }
+  .version-card ul li::before{
+    content:"▸";
+    color:var(--cyan);
+    margin-right:8px;
+  }
+  .version-card .vlink{
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--accent);
+  }
+  .version-card .vlink:hover{color:var(--cyan);}
+
+  /* ---------- steps ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+    counter-reset:step;
+  }
+  .step{
+    position:relative;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 22px 22px;
+  }
+  .step::before{
+    counter-increment:step;
+    content:counter(step,decimal-leading-zero);
+    font-size:26px;
+    font-weight:800;
+    color:rgba(77,141,255,.35);
+    display:block;
+    margin-bottom:10px;
+    letter-spacing:1px;
+  }
+  .step h3{font-size:16.5px;margin-bottom:9px;}
+  .step p{font-size:14px;color:var(--txt-dim);}
+
+  /* ---------- features ---------- */
+  .feature-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  .feature-list{list-style:none;display:grid;gap:20px;}
+  .feature-list li{
+    display:flex;
+    gap:16px;
+    padding:18px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.02);
+  }
+  .f-icon{
+    flex:none;
+    width:42px;height:42px;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:19px;
+    background:linear-gradient(135deg,rgba(77,141,255,.22),rgba(122,92,255,.22));
+    border:1px solid rgba(77,141,255,.3);
+  }
+  .feature-list h3{font-size:16px;margin-bottom:6px;}
+  .feature-list p{font-size:14px;color:var(--txt-dim);}
+
+  .note-box{
+    background:linear-gradient(160deg,rgba(27,34,56,.95),rgba(21,27,46,.95));
+    border:1px solid var(--line);
+    border-left:4px solid var(--cyan);
+    border-radius:12px;
+    padding:24px;
+  }
+  .note-box h3{font-size:17px;margin-bottom:12px;}
+  .note-box ul{list-style:none;display:grid;gap:11px;}
+  .note-box li{
+    font-size:14.5px;
+    color:var(--txt-dim);
+    padding-left:20px;
+    position:relative;
+  }
+  .note-box li::before{
+    content:"";
+    position:absolute;
+    left:0;top:9px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--cyan);
+  }
+
+  /* ---------- faq ---------- */
+  .faq-wrap{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .faq-list{display:grid;gap:14px;max-width:900px;}
+  .faq-item{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .faq-q{
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    color:var(--txt);
+    font-size:16px;
+    font-weight:600;
+    font-family:inherit;
+    padding:19px 22px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+  }
+  .faq-q .plus{
+    flex:none;
+    font-size:20px;
+    color:var(--accent);
+    transition:transform .25s;
+    line-height:1;
+  }
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .faq-a p{
+    padding:0 22px 20px;
+    font-size:14.5px;
+    color:var(--txt-dim);
+  }
+  .faq-item.open .faq-a{max-height:340px;}
+
+  /* ---------- sidebar / aside ---------- */
+  .side-layout{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:36px;
+    align-items:start;
+  }
+  .prose p{
+    font-size:15.5px;
+    color:var(--txt-dim);
+    margin-bottom:16px;
+  }
+  .prose h3{
+    font-size:18px;
+    color:var(--txt);
+    margin:26px 0 12px;
+  }
+  aside.side{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+    position:sticky;
+    top:88px;
+  }
+  aside.side h3{
+    font-size:16px;
+    margin-bottom:16px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .side-links{list-style:none;display:grid;gap:12px;}
+  .side-links a{
+    display:flex;
+    justify-content:space-between;
+    font-size:14.5px;
+    color:var(--txt-dim);
+    transition:.2s;
+  }
+  .side-links a:hover{color:var(--accent);}
+  .side-links span{color:rgba(154,166,196,.5);}
+
+  /* ---------- cta band ---------- */
+  .cta-band{
+    background:linear-gradient(120deg,rgba(77,141,255,.16),rgba(122,92,255,.16));
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+    padding:56px 0;
+  }
+  .cta-band h2{font-size:25px;margin-bottom:12px;}
+  .cta-band p{color:var(--txt-dim);font-size:15.5px;max-width:620px;margin:0 auto 26px;}
+
+  /* ---------- footer ---------- */
+  footer.site{
+    background:#0a0e1a;
+    border-top:1px solid var(--line);
+    padding:50px 0 26px;
+  }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:32px;
+    margin-bottom:36px;
+  }
+  .foot-brand p{
+    font-size:14px;
+    color:var(--txt-dim);
+    margin-top:14px;
+    max-width:300px;
+  }
+  .foot-col h4{
+    font-size:14.5px;
+    margin-bottom:16px;
+    color:#fff;
+  }
+  .foot-col ul{list-style:none;display:grid;gap:10px;}
+  .foot-col a{font-size:14px;color:var(--txt-dim);transition:.2s;}
+  .foot-col a:hover{color:var(--accent);}
+  .foot-bottom{
+    border-top:1px solid var(--line);
+    padding-top:22px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:13px;
+    color:rgba(154,166,196,.7);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:34px;}
+    .hero h1{font-size:32px;}
+    .feature-layout{grid-template-columns:1fr;gap:28px;}
+    .side-layout{grid-template-columns:1fr;}
+    aside.side{position:static;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:760px){
+    nav.main-nav{
+      display:none;
+      position:absolute;
+      top:66px;left:0;right:0;
+      background:#111729;
+      border-bottom:1px solid var(--line);
+      padding:12px 20px 20px;
+    }
+    nav.main-nav.open{display:block;}
+    nav.main-nav ul{flex-direction:column;gap:4px;}
+    .nav-toggle{display:block;}
+    .head-cta{display:none;}
+    .intro-grid{grid-template-columns:1fr;}
+    section.block{padding:48px 0;}
+    .hero{padding:52px 0 46px;}
+    .hero h1{font-size:27px;}
+    .sec-head h2{font-size:22px;}
+  }
+  @media (max-width:520px){
+    .hero h1{font-size:24px;}
+    .hero-actions .btn{width:100%;justify-content:center;}
+    .foot-grid{grid-template-columns:1fr;}
+    .cta-band h2{font-size:21px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap head-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">T</span>
+      <span>TSF 桌面
+        <small>LAUNCHER GUIDE</small>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#about">认识 TSF</a></li>
+        <li><a href="#versions">版本选择</a></li>
+        <li><a href="#install">安装步骤</a></li>
+        <li><a href="#features">功能特点</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul>
+    </nav>
+    <a href="#versions" class="head-cta">查看版本</a>
+    <button class="nav-toggle" id="navToggle" aria-label="展开导航">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tagline">● 安卓桌面启动器 · 资源获取指引</span>
+        <h1>tsf下载：<span>桌面启动器</span>获取与使用入门</h1>
+        <p class="lead">
+          如果你在搜索 tsf下载，多半是想找到 TSF Launcher 这款安卓桌面启动器的安装包，
+          或者想确认它是否还值得使用。本页梳理它的基本定位、版本差异、安装流程与常见疑问，
+          帮助你在下载前做出更稳妥的判断。
+        </p>
+        <div class="hero-actions">
+          <a href="#install" class="btn btn-primary">了解安装流程</a>
+          <a href="#about" class="btn btn-ghost">先看它是什么</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h3>下载前需要了解的基本信息</h3>
+        <ul class="spec-list">
+          <li><span class="k">软件类型</span><span class="v">安卓桌面启动器</span></li>
+          <li><span class="k">主要用途</span><span class="v">桌面美化与交互</span></li>
+          <li><span class="k">适配平台</span><span class="v">Android</span></li>
+          <li><span class="k">获取渠道</span><span class="v">应用商店 / 官方发布页</span></li>
+          <li><span class="k">使用成本</span><span class="v">以实际版本说明为准</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- INTRO STRIP -->
+  <section class="intro-strip">
+    <div class="wrap" style="padding:44px 20px;">
+      <div class="intro-grid">
+        <div class="intro-card">
+          <h3><span class="dot"></span>它解决什么问题</h3>
+          <p>安卓系统自带的桌面在图标排布、动效和主题自由度上相对固定。TSF Launcher 属于第三方桌面，主要用来替换默认桌面，让图标布局、切换动效和视觉风格更贴近个人偏好。</p>
+        </div>
+        <div class="intro-card">
+          <h3><span class="dot"></span>谁适合使用</h3>
+          <p>对手机外观有明确审美要求、愿意花时间调整布局的用户会更适合。如果你只想开箱即用、不希望折腾设置，系统自带桌面往往更省心。</p>
+        </div>
+        <div class="intro-card">
+          <h3><span class="dot"></span>下载前要确认的事</h3>
+          <p>先确认手机系统版本是否在兼容范围内，再确认来源是否为可信渠道。第三方桌面涉及桌面权限与通知读取，来源不明的安装包存在风险。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="block" id="about">
+    <div class="wrap side-layout">
+      <div class="prose">
+        <div class="sec-head">
+          <div class="eyebrow">基本认识</div>
+          <h2>TSF 桌面启动器是什么</h2>
+        </div>
+        <p>
+          TSF Launcher 是一款面向 Android 平台的第三方桌面启动器。它的核心思路是替换手机原有的桌面应用，
+          在保留基本操作逻辑的前提下，提供更丰富的图标排列方式、页面切换动效以及主题化外观选项。
+          用户安装后，通常需要在系统设置中把它设为默认主屏幕应用才能生效。
+        </p>
+        <p>
+          和所有第三方桌面一样，它并不改变系统底层，只是接管了“桌面”这一层的呈现与交互。
+          因此应用的图标、通知、快捷方式等仍然来自系统本身，桌面只负责把它们组织起来展示给用户。
+          理解这一点，有助于避免对功能产生不切实际的期待。
+        </p>
+        <h3>为什么有人会搜索 tsf下载</h3>
+        <p>
+          常见原因有三类：一是曾经用过、换机后想重新装回来；二是看到他人分享的桌面效果，想尝试同款；
+          三是想找一个可自定义程度较高的桌面来替代系统自带桌面。无论属于哪一类，下载前都建议先确认版本与系统兼容性。
+        </p>
+        <h3>它和系统自带桌面的关系</h3>
+        <p>
+          第三方桌面与系统桌面是并列关系，而非替代系统组件。你可以在系统设置里随时切换回默认桌面，
+          也可以同时保留多个桌面应用。这意味着尝试成本相对可控，不满意时可以退回原状。
+        </p>
+      </div>
+
+      <aside class="side">
+        <h3>页面导航</h3>
+        <ul class="side-links">
+          <li><a href="#versions">版本怎么选 <span>→</span></a></li>
+          <li><a href="#install">安装与设置 <span>→</span></a></li>
+          <li><a href="#features">功能特点 <span>→</span></a></li>
+          <li><a href="#security">安全与注意事项 <span>→</span></a></li>
+          <li><a href="#faq">常见问题 <span>→</span></a></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- VERSIONS -->
+  <section class="block" id="versions" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">版本选择</div>
+        <h2>下载前先想清楚要哪个版本</h2>
+        <p>不同版本在功能、界面和系统兼容性上存在差异。下面按常见的使用场景做个划分，帮助你缩小选择范围。</p>
+      </div>
+      <div class="version-grid">
+        <article class="version-card">
+          <span class="vtag">经典版</span>
+          <h3>面向老机型与稳定优先</h3>
+          <p>适合配置一般、更看重流畅度而非特效的用户。界面相对朴素，资源占用通常更低。</p>
+          <ul>
+            <li>界面简洁，学习成本低</li>
+            <li>对硬件要求相对温和</li>
+            <li>适合作为日常主力桌面</li>
+          </ul>
+          <a href="#install" class="vlink">查看安装方式 →</a>
+        </article>
+
+        <article class="version-card">
+          <span class="vtag">增强版</span>
+          <h3>面向外观与动效需求</h3>
+          <p>提供更多主题、图标包支持和切换动效，适合愿意花时间调整细节的用户。</p>
+          <ul>
+            <li>主题与图标自定义更丰富</li>
+            <li>页面切换动效选项更多</li>
+            <li>需要一定的设置时间</li>
+          </ul>
+          <a href="#features" class="vlink">了解功能特点 →</a>
+        </article>
+
+        <article class="version-card">
+          <span class="vtag">兼容版</span>
+          <h3>面向新系统适配</h3>
+          <p>针对较新的 Android 版本做了适配处理，主要用于解决旧版本在新系统上无法正常设为默认桌面的问题。</p>
+          <ul>
+            <li>关注新系统权限变化</li>
+            <li>安装后需重新授权</li>
+            <li>建议以实际发布说明为准</li>
+          </ul>
+          <a href="#security" class="vlink">查看注意事项 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="block" id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">安装流程</div>
+        <h2>从获取到设为默认桌面的步骤</h2>
+        <p>第三方桌面的安装比普通应用多一步“设为默认”的操作，流程本身并不复杂，按顺序来即可。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>确认系统版本</h3>
+          <p>在手机设置中查看 Android 版本号。版本过新或过旧时，部分桌面功能可能无法正常调用，先确认再下载更稳妥。</p>
+        </div>
+        <div class="step">
+          <h3>选择可信来源</h3>
+          <p>优先选择应用商店或开发者公开的发布页面。避免来源不明的安装包，尤其是要求额外敏感权限的版本。</p>
+        </div>
+        <div class="step">
+          <h3>安装并授权</h3>
+          <p>安装完成后打开应用，按提示授予必要权限。桌面类应用通常会请求存储、通知等权限，按实际需要开启即可。</p>
+        </div>
+        <div class="step">
+          <h3>设为默认桌面</h3>
+          <p>进入系统设置中的“主屏幕应用”或“默认应用”选项，把默认桌面切换为 TSF。之后按 Home 键即可看到新桌面。</p>
+        </div>
+        <div class="step">
+          <h3>调整与回退</h3>
+          <p>按自己的习惯调整图标布局与主题。如果体验不理想，随时可以在同一设置项里切回系统自带桌面。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="block" id="features" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">功能特点</div>
+        <h2>它通常提供哪些能力</h2>
+        <p>不同版本的具体功能会有差异，以下为这类桌面启动器普遍具备的能力方向，供参考判断是否符合你的需求。</p>
+      </div>
+      <div class="feature-layout">
+        <ul class="feature-list">
+          <li>
+            <span class="f-icon">▦</span>
+            <div>
+              <h3>图标与网格布局</h3>
+              <p>可以调整每屏图标数量、行列比例和间距，让桌面密度符合自己的使用习惯。</p>
+            </div>
+          </li>
+          <li>
+            <span class="f-icon">◈</span>
+            <div>
+              <h3>主题与图标包</h3>
+              <p>支持更换视觉主题，部分版本可搭配第三方图标包，统一桌面整体风格。</p>
+            </div>
+          </li>
+          <li>
+            <span class="f-icon">↻</span>
+            <div>
+              <h3>切换动效</h3>
+              <p>翻页、打开应用等操作可设置过渡动画，视觉反馈更丰富，但也会增加一定资源消耗。</p>
+            </div>
+          </li>
+          <li>
+            <span class="f-icon">⚙</span>
+            <div>
+              <h3>手势与快捷操作</h3>
+              <p>通过上滑、双击等手势快速打开常用功能，减少在桌面与应用之间来回切换的次数。</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="note-box" id="security">
+          <h3>下载与使用时的注意事项</h3>
+          <ul>
+            <li>桌面类应用权限较广，安装前留意它请求的权限是否与功能相符。</li>
+            <li>来源不明的安装包可能被二次打包，建议优先选择可信渠道。</li>
+            <li>设为默认桌面后，部分系统手势可能与原桌面逻辑不同，需要适应。</li>
+            <li>若出现耗电增加或卡顿，可先关闭动效或切回系统桌面排查。</li>
+            <li>系统大版本更新后，建议重新确认桌面是否仍能正常工作。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block faq-wrap" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">常见问题</div>
+        <h2>关于 tsf下载的疑问解答</h2>
+        <p>以下问题来自搜索和实际使用中较常见的困惑，答案以通用情况为准，具体以你所使用的版本说明为准。</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">TSF 桌面启动器现在还能用吗？<span class="plus">+</span></button>
+          <div class="faq-a"><p>能否正常使用主要取决于你的手机系统版本与该版本的兼容情况。较新的 Android 系统对第三方桌面的权限管理更严格，部分旧版本可能无法顺利设为默认桌面。建议先确认兼容性再决定是否长期使用。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">下载后需要 Root 权限吗？<span class="plus">+</span></button>
+          <div class="faq-a"><p>通常不需要。第三方桌面通过系统提供的默认应用设置即可接管桌面，不涉及 Root。如果某个版本要求 Root，建议谨慎对待，确认其必要性后再决定。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">安装后桌面没有变化怎么办？<span class="plus">+</span></button>
+          <div class="faq-a"><p>多数情况是没有把它设为默认桌面。请到系统设置的默认应用或主屏幕应用选项中手动切换。如果选项中没有出现该应用，可能是系统兼容性问题。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">会不会影响手机性能或续航？<span class="plus">+</span></button>
+          <div class="faq-a"><p>桌面应用常驻运行，动效和主题越复杂，资源占用通常越高。如果感觉耗电或卡顿明显，可以尝试关闭动效、减少桌面组件，或切回系统自带桌面进行对比。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">怎么卸载或恢复原来的桌面？<span class="plus">+</span></button>
+          <div class="faq-a"><p>先在系统设置中把默认桌面切回系统自带桌面，再像卸载普通应用一样卸载 TSF 即可。顺序很重要，直接卸载可能导致桌面暂时不可用。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">从哪里获取比较稳妥？<span class="plus">+</span></button>
+          <div class="faq-a"><p>优先考虑正规应用商店或开发者公开的发布渠道。对于第三方下载站提供的安装包，建议留意文件信息与权限请求，避免安装被修改过的版本。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>先判断需求，再决定是否下载</h2>
+      <p>第三方桌面带来的主要是外观与交互上的自由度，代价是需要一定的设置时间。如果你更看重省心和稳定，系统自带桌面同样是不错的选择。</p>
+      <a href="#install" class="btn btn-primary">回到安装步骤</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark">T</span>
+          <span>TSF 桌面
+            <small>LAUNCHER GUIDE</small>
+          </span>
+        </a>
+        <p>围绕 TSF 桌面启动器的资源获取、安装设置与使用建议整理的信息页面，内容以通用情况为准。</p>
+      </div>
+      <div class="foot-col">
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#about">认识 TSF</a></li>
+          <li><a href="#versions">版本选择</a></li>
+          <li><a href="#install">安装步骤</a></li>
+          <li><a href="#features">功能特点</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>使用帮助</h4>
+        <ul>
+          <li><a href="#install">如何设为默认桌面</a></li>
+          <li><a href="#security">权限与安全提示</a></li>
+          <li><a href="#faq">卸载与恢复</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>相关说明</h4>
+        <ul>
+          <li><a href="#about">适用人群</a></li>
+          <li><a href="#features">功能概览</a></li>
+          <li><a href="#security">注意事项</a></li>
+          <li><a href="#faq">兼容性疑问</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>本页为信息整理页面，不提供任何安装包的直接托管。</span>
+      <span>请以实际版本说明与系统设置为准。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    if(toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('open');
+      });
+      nav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A'){
+          nav.classList.remove('open');
+        }
+      });
+    }
+
+    var items = document.querySelectorAll('.faq-item');
+    items.forEach(function(item){
+      var btn = item.querySelector('.faq-q');
+      btn.addEventListener('click', function(){
+        var isOpen = item.classList.contains('open');
+        items.forEach(function(other){ other.classList.remove('open'); });
+        if(!isOpen){ item.classList.add('open'); }
+      });
+    });
+  })();
+</script>
+
+</body>
+  </html>
